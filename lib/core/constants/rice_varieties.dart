@@ -1,0 +1,15 @@
+const List<String> kRiceVarieties = [
+  'ST25',
+  'OM5451',
+  'OM18',
+  'Đài Thơm 8',
+  'Jasmine 85',
+  'IR50404',
+  'Nàng Hoa 9',
+  'Lúa Nếp',
+  'RVT',
+  'OM4900',
+  'OM9582',
+  'OM6976',
+  'Khác',
+];

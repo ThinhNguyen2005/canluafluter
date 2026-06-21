@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "650291928628",
+    "project_id": "canluaflutter",
+    "storage_bucket": "canluaflutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:650291928628:android:1e5cf7d935a7e1f31a3461",
+        "android_client_info": {
+          "package_name": "com.thinh.canlua"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAun44sVuxI_OCpdTA1J43MoJfFSccWjV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
