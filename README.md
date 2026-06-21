@@ -1,94 +1,96 @@
-# 🌾 Cân Lúa
+# 🌾 Cân Lúa (Rice Weighing)
 
-Ứng dụng Flutter di động hỗ trợ ghi chép phiếu cân lúa ruộng, theo dõi giá cả thị trường, tin tức và tư vấn nông nghiệp bằng AI. Tối ưu hóa offline-first, giao diện dễ thao tác cho nông dân ĐBSCL.
+**English** | [Tiếng Việt](README.vi.md)
 
----
-
-## 🚀 Tính Năng Chính
-
-* **Ghi nhận & Nhập cân lúa:**
-  * Lưới nhập cân 5x6 (30 ô) sắp xếp theo thứ tự cột trước, dòng sau (column-major) truyền thống.
-  * Hỗ trợ chạm chọn ô bất kỳ để chỉnh sửa trực tiếp, cập nhật live-preview.
-  * Tích hợp cấu hình nhanh tại chỗ (khấu bì, tạp chất, độ ẩm), giải thích công thức toán nông nghiệp chi tiết.
-  * Đọc số ký bằng giọng nói (TTS tiếng Việt) và rung phản hồi (Haptic).
-* **Quản lý phiếu cân & giao dịch:**
-  * Danh sách phiếu cân hỗ trợ tìm kiếm, lọc theo ngày/nợ, vuốt trái để xóa (có hoàn tác).
-  * Chi tiết phiếu trực quan hóa với 3 thẻ chỉ số nổi bật: Kg Thực, Tổng Tiền, Còn Nợ.
-  * Ghi nhận giao dịch tài chính (cọc, trả thêm, hoàn tiền).
-* **Bảng giá thị trường & Tin tức:**
-  * Xem giá lúa/gạo realtime (đồng bộ từ Firestore), tự động lưu cache Drift khi offline.
-  * Đọc tin tức nông nghiệp từ RSS feeds, phân loại chủ đề tự động.
-* **AI Khuyến nông:**
-  * Hỏi đáp tư vấn trồng lúa qua OpenRouter API (Gemini-Flash-1.5).
-  * Tự động đính kèm thông tin thị trường và kiến thức canh tác vào câu hỏi.
-* **Dashboard Thống kê:**
-  * Thống kê vụ mùa hiện tại và so sánh liên vụ (biểu đồ cột, biểu đồ tròn giống lúa).
+A Flutter mobile application designed to digitize agricultural rice weighing sheets, track market prices, view news feeds, and consult with an AI assistant. Optimized offline-first for farmers in the Mekong Delta (ĐBSCL).
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## 🚀 Key Features
+
+* **Weighing Records & Grid Input:**
+  * 5x6 (30 cells) grid layout matching traditional column-major hand-drawn tables.
+  * Direct cell tapping to select and edit any entry with real-time live-preview.
+  * Collapsible quick configuration panel (tare weight, impurity, moisture) with inline tooltips explaining calculations.
+  * Text-To-Speech (TTS) integration reading weights aloud in Vietnamese alongside haptic feedback.
+* **Weighing Card & Transaction Management:**
+  * Card list featuring search, date/debt filters, and swipe-to-delete with undo.
+  * Redesigned card details highlighting key metrics: Net Weight, Total Amount, and Remaining Debt.
+  * Financial transaction logs (deposits, payments, refunds).
+* **Market Prices & News:**
+  * Real-time rice/paddy price lookup synchronized with Firestore (cached in Drift SQLite for offline usage).
+  * RSS news feeds with automated categorization.
+* **AI Crop Advisor:**
+  * Conversational crop helper powered by OpenRouter API (Gemini-Flash-1.5).
+  * Automatically injects current market prices and localized agronomy knowledge context into chats.
+* **Dashboard Analytics:**
+  * Statistical season insights and multi-season comparisons (bar and pie charts via fl_chart).
+
+---
+
+## 🛠️ Tech Stack
 
 * **State Management:** Riverpod (`flutter_riverpod`)
-* **Local Database:** Drift (`drift` + `drift_dev`) - SQLite type-safe.
+* **Local Database:** Drift (`drift` + `drift_dev`) - Type-safe SQLite.
 * **Navigation:** GoRouter (`go_router`)
 * **Charts:** fl_chart (`fl_chart`)
 * **API Client:** Dio (`dio`)
 * **TTS & STT:** `flutter_tts`, `speech_to_text`
 * **Markdown:** `flutter_markdown`
-* **Theme:** Hỗ trợ Light & Dark theme.
+* **Theme:** Light & Dark theme support.
 
 ---
 
-## 📁 Cấu Trúc Thư Mục
+## 📁 Directory Structure
 
 ```text
 lib/
 ├── core/
-│   ├── theme/            # Cấu hình màu sắc (cấm màu tím), typography
-│   ├── constants/        # Giống lúa mặc định, cấu hình chung
-│   └── utils/            # Logic tính toán RiceCalculator, format định dạng số
+│   ├── theme/            # Theme, colors (purple banned), typography
+│   ├── constants/        # Default rice varieties, general app constants
+│   └── utils/            # Calculation engine (RiceCalculator), formatters
 ├── database/             # AppDatabase Drift SQLite setup
 ├── features/
-│   ├── weighing/         # Quản lý phiếu cân, chi tiết & nhập cân lúa
-│   ├── market/           # Xem bảng giá lúa thị trường
-│   ├── news/             # Đọc tin tức RSS
-│   ├── ai_chat/          # AI khuyến nông tư vấn canh tác
-│   └── dashboard/        # Báo cáo thống kê vụ mùa & liên vụ
-└── services/             # TTS, Firestore, AI API, RSS parser
+│   ├── weighing/         # Weighing cards, details & input grid
+│   ├── market/           # Market price board
+│   ├── news/             # RSS news reader
+│   ├── ai_chat/          # AI Chat bot assistant
+│   └── dashboard/        # Season stats & comparisons
+└── services/             # TTS, Firestore, AI API, RSS parsing
 ```
 
 ---
 
-## 🏁 Hướng Dẫn Cài Đặt & Chạy Dự Án
+## 🏁 Getting Started
 
-### 1. Chuẩn bị môi trường
-* Flutter SDK (phiên bản mới nhất)
-* Android SDK / Xcode (dành cho iOS)
+### 1. Prerequisites
+* Flutter SDK (Latest stable version)
+* Android SDK / Xcode (for iOS target)
 
-### 2. Cài đặt thư viện
+### 2. Install dependencies
 ```bash
 flutter pub get
 ```
 
-### 3. Sinh mã tự động (Drift Database)
+### 3. Generate drift code
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
 
-### 4. Khởi chạy ứng dụng
+### 4. Run the app
 ```bash
 flutter run
 ```
 
-### 5. Chạy unit tests
+### 5. Run tests
 ```bash
 flutter test
 ```
 
 ---
 
-## ⚠️ Nguyên Tắc Phát Triển Cốt Lõi
+## ⚠️ Core Development Principles
 
-1. **Cấm màu tím/violet:** Không sử dụng màu tím trong bất kỳ cấu phần giao diện nào.
-2. **Kích thước chạm:** Tất cả các thành phần tương tác (nút bấm, ô cân) phải có touch target tối thiểu từ $48 \times 48\text{dp}$.
-3. **Offline-first:** Mọi phép tính toán khối lượng thực tế, tổng tiền, nợ phải hoạt động tức thì thông qua dữ liệu nội bộ không phụ thuộc internet.
+1. **Purple/Violet Ban:** Never use purple or violet color palette anywhere in the application.
+2. **Touch Targets:** All interactive widgets (buttons, cells) must have a touch target of at least $48 \times 48\text{dp}$.
+3. **Offline-first:** All agricultural computations (net weight, totals, remaining debt) must run locally and instantly via the database, without requiring network latency.
