@@ -46,3 +46,4 @@ app.*.map.json
 secrets.json
 .agent/
 /android/build/
+FLUTTER_APP_BLUEPRINT.md
